@@ -88,7 +88,7 @@ def send_resposne(reaction=""):
         print("Encountered errors while inserting rows: {}".format(errors))
 
 
-def show_input_output(tile_raw,output)
+def show_input_output(tile_raw,output):
 
     fig, axes = plt.subplots(1,2)
     axes[0].imshow(tile_raw)
