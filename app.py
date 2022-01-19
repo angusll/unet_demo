@@ -43,9 +43,10 @@ def request_model_api(img_array):
 
     try: 
         pred_bytes = pred_response.predictions
-        pred_arr = tf.io.decode_raw(base64.urlsafe_b64decode(pred_bytes),tf.float32)
+        pred_arr = tf.io.decode_raw(base64.urlsafe_b64decode(pred_bytes[0]),tf.float32)
         pred_mask = tf.reshape(pred_arr,[320,320,1])
         return  pred_mask
+    
     except:
         return st.write('Request Time out or error occured') # temp escape from time out or api error
 
@@ -98,14 +99,13 @@ def show_input_output(tile_raw,output):
     axes[0].set_title("Input")
     axes[1].set_title("Prediction")
 
-    axes[0].axis(AXIS)
-    axes[1].axis(AXIS)
+    axes[0].axis('off')
+    axes[1].axis('off')
 
     st.write(fig)
 
     
-# config
-AXIS = 'off'
+
 
 # main
 st.title("AE13")
