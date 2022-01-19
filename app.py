@@ -44,7 +44,7 @@ def request_model_api(img_array):
     try: 
         pred_bytes = pred_response.predictions
         pred_arr = tf.io.decode_raw(base64.urlsafe_b64decode(pred_bytes[0]),tf.float32)
-        pred_mask = tf.reshape(pred_arr,[320,320,1])
+        pred_mask = tf.reshape(pred_arr,[320,320]).numpy()
         return  pred_mask
     
     except:
