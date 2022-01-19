@@ -108,12 +108,12 @@ def show_input_output(tile_raw,output):
 
 
 # main
-st.title("AE13")
+st.title("AE13 Demo")
 models = ["IHC model api"]
 model_di = {"IHC model api":"IHC model api"}
 
 # defaults to model with API for faster init time
-MODEL_FP = st.selectbox("Select model", models, index=2)
+MODEL_FP = st.selectbox("Select model", models, index=0)
 MODEL_FP = model_di[MODEL_FP]
 
 
