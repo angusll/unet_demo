@@ -20,7 +20,7 @@ def endpoint_predict_sample(project: str, location: str, instances: list, endpoi
     endpoint = aiplatform.Endpoint(endpoint)
 
     prediction = endpoint.predict(instances=instances)
-    print(prediction)
+
     return prediction
 
 def post_process(y_hat):
@@ -43,8 +43,9 @@ def request_model_api(img_array):
 
     try: 
         pred_bytes = pred_response.predictions
-        mask = tf.reshape(tf.io.decode_raw(base64.urlsafe_b64decode(pred_bytes),tf.float32),[320,320])
-        return  mask
+        pred_arr = tf.io.decode_raw(base64.urlsafe_b64decode(pred_bytes),tf.float32)
+        pred_mask = tf.reshape(pred_arr,[320,320,1])
+        return  pred_mask
     except:
         return st.write('Request Time out or error occured') # temp escape from time out or api error
 
@@ -125,8 +126,7 @@ tile_raw = sample_img[...,:3]
 st.image(tile_raw, caption='Sample Data', width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
 
 if st.button("Use sample data to demo"):
-    tile = sample_img
-    output = request_model_api(tile)
+    output = request_model_api(tile_raw)
     show_input_output(tile_raw,output)
     
 file_obj = st.file_uploader("Upload tile", type=['png','jpg'])
