@@ -10,6 +10,7 @@ RUN pip install -r requirements.txt
 
 # Copy app code and set working directory
 COPY app.py app.py
+COPY sample_data.png sample_data.png
 WORKDIR .
 
 # Run
