@@ -109,12 +109,8 @@ def show_input_output(tile_raw,output):
 
 # main
 st.title("AE13")
-models = ["H&E 128x128 Baseline", 
-            "H&E 128x128 Baseline2",
-            "IHC model api"]
-model_di = {"H&E 128x128 Baseline":"test_deploy_model.h5",
-            "H&E 128x128 Baseline2":"epoch_100_0.0840_128_128_this_works.h5",
-            "IHC model api":"IHC model api"}
+models = ["IHC model api"]
+model_di = {"IHC model api":"IHC model api"}
 
 # defaults to model with API for faster init time
 MODEL_FP = st.selectbox("Select model", models, index=2)
